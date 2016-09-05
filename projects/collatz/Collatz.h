@@ -41,6 +41,17 @@ bool collatz_read (istream& r, int& i, int& j);
  */
 int collatz_eval (int i, int j);
 
+// ------------
+// collatz_calc
+// ------------
+
+/**
+ * calculates the cycle length of the given value
+ * @param comp_cycle the number to compute the cycle length for
+ * @return the cycle length of comp_cycle
+ */
+ int collatz_calc (int comp_cycle);
+
 // -------------
 // collatz_print
 // -------------
