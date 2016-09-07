@@ -51,16 +51,14 @@ int collatz_eval (int i, int j) {
             start_range = high_range;
         else
             start_range = i;
-        end_range = j;
-    }
+        end_range = j;}
     else {
         high_range = (i / 2) + 1;
         if (j < high_range)
             start_range = high_range;
         else
             start_range = j;
-        end_range = i;
-    }
+        end_range = i;}
     for(current_comp = start_range; current_comp <= end_range; ++current_comp) {
         if (cycle_cache[current_comp] != 0)
             current_cycle = cycle_cache[current_comp];
@@ -71,8 +69,7 @@ int collatz_eval (int i, int j) {
         if (current_cycle > max_cycle)
             max_cycle = current_cycle;
     }
-    return max_cycle;
-}
+    return max_cycle;}
 
 #else
 int collatz_eval (int i, int j) {
