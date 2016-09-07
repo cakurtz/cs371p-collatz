@@ -79,6 +79,11 @@ Collatz.log:
 Doxyfile:
 	doxygen -g
 
+# Make the following edits to Doxyfile.		
+	# EXTRACT_ALL            = YES		
+	# EXTRACT_PRIVATE        = YES		
+	# EXTRACT_STATIC         = YES
+
 RunCollatz: Collatz.h Collatz.c++ RunCollatz.c++
 	$(CXX) $(CXXFLAGS) Collatz.c++ RunCollatz.c++ -o RunCollatz
 	-$(CLANG-CHECK) -extra-arg=-std=c++11          Collatz.c++     --
@@ -120,30 +125,29 @@ check:
     echo "success";
 
 clean:
+	rm -f  *.db
 	rm -f  *.gcda
 	rm -f  *.gcno
 	rm -f  *.gcov
 	rm -f  *.plist
+	rm -f  Collatz.log		
+	rm -f  Doxyfile
 	rm -f  RunCollatz
 	rm -f  RunCollatz.tmp
 	rm -f  TestCollatz
 	rm -f  TestCollatz.tmp
 	rm -rf *.dSYM
+	rm -rf html		
+	rm -rf latex
 
 config:
 	git config -l
 
 format:
-	clang-format -i Collatz.c++
-	clang-format -i Collatz.h
-	clang-format -i RunCollatz.c++
-	clang-format -i TestCollatz.c++
-
-scrub:
-	make clean
-	rm -f  Collatz.log
-	rm -rf html
-	rm -rf latex
+	$(CLANG-FORMAT) -i Collatz.c++			clang-format -i Collatz.c++
+	$(CLANG-FORMAT) -i Collatz.h			clang-format -i Collatz.h
+	$(CLANG-FORMAT) -i RunCollatz.c++			clang-format -i RunCollatz.c++
+	$(CLANG-FORMAT) -i TestCollatz.c++
 
 status:
 	make clean

@@ -1,0 +1,174 @@
+commit 3233cf516bc76edfc079d06adc6d58bd6d813425
+Merge: e4c82d0 8f9c49c
+Author: Coty <cakurtz@utexas.edu>
+Date:   Mon Sep 5 02:23:06 2016 -0500
+
+    Working solution! Close #2 CLose #3 Close #4
+
+commit 8f9c49cda2970f2fea7138e9b66eef3a5d7300ab
+Author: Coty <cakurtz@utexas.edu>
+Date:   Mon Sep 5 02:10:48 2016 -0500
+
+    Implementation of a slow, non-optimized solution. Close #4
+
+commit 0e56cb57e93d2762ec8a4974b5742f1fcae72a1a
+Author: Coty <cakurtz@utexas.edu>
+Date:   Sun Sep 4 23:35:41 2016 -0500
+
+    Added some more tests that are failing (correctly). close #2 close #3
+
+commit fef5db33daf79890bca8f320320fc62acd7234a2
+Author: Coty <cakurtz@utexas.edu>
+Date:   Sun Sep 4 23:21:46 2016 -0500
+
+    Trying to correct tests
+
+commit e4c82d0a8ff2695385c614e6656e1e419033ea37
+Author: Coty <cakurtz@utexas.edu>
+Date:   Sun Sep 4 22:47:06 2016 -0500
+
+    Set up correctly. Merging to master. Close #1
+
+commit e222783f25302fc0b14bfb5a24d402a21af85521
+Author: Coty <cakurtz@utexas.edu>
+Date:   Sun Sep 4 22:42:11 2016 -0500
+
+    All set up. Passing incorrect tests. close #1
+
+commit ba9a5d8fb4e8a463fb529b62dd78319f7ce89bec
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Fri Sep 2 22:10:00 2016 -0500
+
+    another commit
+
+commit 81a3a317a15030489ecc20a665eea82f429abdb7
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Fri Sep 2 22:01:35 2016 -0500
+
+    another commit
+
+commit 01ded775c110eac4e216fdf2199c4b01393e2bb2
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Thu Sep 1 22:18:48 2016 -0500
+
+    another commit
+
+commit 2a8cb72951616da91bca9da40792fe93dae81ac1
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Thu Sep 1 08:47:48 2016 -0500
+
+    another commit
+
+commit 78d0265226c917ca002b7e172758e98886dec145
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Thu Sep 1 08:45:51 2016 -0500
+
+    another commit
+
+commit 96d8dab27ff26aba03b43d4cc5a2bd43dc8e0104
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Wed Aug 31 20:34:43 2016 -0500
+
+    another commit
+
+commit 92b337f8f5ca625b4e612a6f5833c7044bcde778
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Wed Aug 31 20:32:09 2016 -0500
+
+    another commit
+
+commit 9f5f71123dee397cf6dabf8b171c21d086aaf3b7
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Wed Aug 31 20:26:33 2016 -0500
+
+    another commit
+
+commit 417c3d83a3bf87dfdcb5911c7b09c0879960b16b
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Wed Aug 31 20:21:04 2016 -0500
+
+    another commit
+
+commit a3f918f0f9e72d38d26b8b3b1c061ecf27989f44
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Wed Aug 31 20:20:01 2016 -0500
+
+    another commit
+
+commit da784943e7f0785f3b81a60d060e1a3a5c78975d
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Wed Aug 31 19:47:07 2016 -0500
+
+    another commit
+
+commit a588f9c20fc42e735829361c274831307f275493
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Wed Aug 31 07:36:56 2016 -0500
+
+    another commit
+
+commit c329e0b797693741db74729fbc36b395396c0fd2
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Wed Aug 31 07:36:46 2016 -0500
+
+    another commit
+
+commit 5da751c024520aa7c7beb07114e8c90a1f3946dd
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Sun Aug 28 22:32:51 2016 -0500
+
+    another commit
+
+commit 539395d269443273be72732065d9323561bc4ad8
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Sat Aug 27 23:07:56 2016 -0500
+
+    another commit
+
+commit 81488a0a83e958fc878430252ee959df6d28891a
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Sat Aug 27 17:05:18 2016 -0500
+
+    another commit
+
+commit 6bdcc051737dcd896f8f3bad0673a1c50a22e6ea
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Thu Aug 25 22:20:27 2016 -0500
+
+    another commit
+
+commit 9701e94b2e2365351cf8cb85b7ce9396760fd5eb
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Thu Aug 25 22:18:38 2016 -0500
+
+    another commit
+
+commit 00647dc3673db52af5c9be134ffc9cb4486907fd
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Thu Aug 25 22:14:31 2016 -0500
+
+    another commit
+
+commit 4dbdb175edd381a15bed6c5e190e7133eeba2374
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Thu Aug 25 22:11:53 2016 -0500
+
+    another commit
+
+commit ee73855d8ccaab6ed5bc59eaecce308b4e183bd6
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Tue Aug 23 09:30:46 2016 -0500
+
+    another commit
+
+commit f31e9e5c4ea40aacadd3fa877513f7b2d42aa511
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Sun Aug 21 17:02:45 2016 -0500
+
+    another commit
+
+commit 20aac524b632e0d3433163e8f26b37364950f0d8
+Author: Glenn Downing <downing@cs.utexas.edu>
+Date:   Sun Aug 21 17:02:37 2016 -0500
+
+    first commit
