@@ -1,5 +1,22 @@
 .DEFAULT_GOAL := test
 
+FILES :=                              \
+    Collatz.c++                       \
+    Collatz.h                         \
+    Collatz.log                       \
+    html                              \
+    RunCollatz.c++                    \
+    RunCollatz.in                     \
+    RunCollatz.out                    \
+    TestCollatz.c++                   \
+    TestCollatz.out
+
+# uncomment these:
+#    collatz-tests/EID-RunCollatz.in   \
+#    collatz-tests/EID-RunCollatz.out  \
+#    collatz-tests/EID-TestCollatz.c++ \
+#    collatz-tests/EID-TestCollatz.out \
+
 ifeq ($(shell uname), Darwin)                                        # Apple
     CXX          := g++
     INCLUDE      := /usr/local/include
@@ -50,55 +67,83 @@ else                                                                 # UTCS
     CLANG-FORMAT := clang-format-3.8
 endif
 
+collatz-tests:
+	git clone https://github.com/cs371p-fall-2016/collatz-tests.git
+
+html: Doxyfile Collatz.h Collatz.c++ RunCollatz.c++ TestCollatz.c++
+	doxygen Doxyfile
+
+Collatz.log:
+	git log > Collatz.log
+
+Doxyfile:
+	doxygen -g
+
+RunCollatz: Collatz.h Collatz.c++ RunCollatz.c++
+	$(CXX) $(CXXFLAGS) Collatz.c++ RunCollatz.c++ -o RunCollatz
+	-$(CLANG-CHECK) -extra-arg=-std=c++11          Collatz.c++     --
+	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze Collatz.c++     --
+	-$(CLANG-CHECK) -extra-arg=-std=c++11          RunCollatz.c++  --
+	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze RunCollatz.c++  --
+
+RunCollatz.tmp: RunCollatz
+	./RunCollatz < RunCollatz.in > RunCollatz.tmp
+	diff RunCollatz.tmp RunCollatz.out
+
+TestCollatz: Collatz.h Collatz.c++ TestCollatz.c++
+	$(CXX) $(CXXFLAGS) $(GCOVFLAGS) Collatz.c++ TestCollatz.c++ -o TestCollatz $(LDFLAGS)
+	-$(CLANG-CHECK) -extra-arg=-std=c++11          TestCollatz.c++ --
+	-$(CLANG-CHECK) -extra-arg=-std=c++11 -analyze TestCollatz.c++ --
+
+TestCollatz.tmp: TestCollatz
+	$(VALGRIND) ./TestCollatz                               >  TestCollatz.tmp 2>&1
+	$(GCOV) -b Collatz.c++ | grep -A 5 "File 'Collatz.c++'" >> TestCollatz.tmp
+	cat TestCollatz.tmp
+
+check:
+	@not_found=0;                                 \
+    for i in $(FILES);                            \
+    do                                            \
+        if [ -e $$i ];                            \
+        then                                      \
+            echo "$$i found";                     \
+        else                                      \
+            echo "$$i NOT FOUND";                 \
+            not_found=`expr "$$not_found" + "1"`; \
+        fi                                        \
+    done;                                         \
+    if [ $$not_found -ne 0 ];                     \
+    then                                          \
+        echo "$$not_found failures";              \
+        exit 1;                                   \
+    fi;                                           \
+    echo "success";
+
 clean:
-	cd examples; make clean
-	@echo
-	cd exercises; make clean
-	@echo
-	cd projects/collatz; make clean
+	rm -f  *.gcda
+	rm -f  *.gcno
+	rm -f  *.gcov
+	rm -f  *.plist
+	rm -f  RunCollatz
+	rm -f  RunCollatz.tmp
+	rm -f  TestCollatz
+	rm -f  TestCollatz.tmp
+	rm -rf *.dSYM
 
 config:
 	git config -l
 
-docker-build:
-	docker build -t gpdowning/gcc .
+format:
+	$(CLANG-FORMAT) -i Collatz.c++			
+	$(CLANG-FORMAT) -i Collatz.h			
+	$(CLANG-FORMAT) -i RunCollatz.c++			
+	$(CLANG-FORMAT) -i TestCollatz.c++
 
-docker-pull:
-	docker pull gpdowning/gcc
-
-docker-push:
-	docker push gpdowning/gcc
-
-docker-run:
-	docker run -it -v $(PWD):/usr/cs371p -w /usr/cs371p gpdowning/gcc
-
-init:
-	touch README
-	git init
-	git add README
-	git commit -m 'first commit'
-	git remote add origin git@github.com:gpdowning/cs371p.git
-	git push -u origin master
-
-pull:
+scrub:
 	make clean
-	@echo
-	git pull
-	git status
-
-push:
-	make clean
-	@echo
-	git add .gitignore
-	git add .travis.yml
-	git add Dockerfile
-	git add examples
-	git add exercises
-	git add makefile
-	git add projects/collatz
-	git commit -m "another commit"
-	git push
-	git status
+	rm -f  Collatz.log
+	rm -rf html
+	rm -rf latex
 
 status:
 	make clean
@@ -107,46 +152,7 @@ status:
 	git remote -v
 	git status
 
-sync:
-	@rsync -r -t -u -v --delete              \
-    --include "Hello.c++"                    \
-    --include "Docker.sh"                    \
-    --include "Assertions.c++"               \
-    --include "Exceptions.c++"               \
-    --exclude "*"                            \
-    ../../examples/c++/ examples
-	@rsync -r -t -u -v --delete              \
-    --include "UnitTests1.c++"               \
-    --include "UnitTests2.c++"               \
-    --include "UnitTests3.c++"               \
-    --include "Coverage1.c++"                \
-    --include "Coverage2.c++"                \
-    --include "Coverage3.c++"                \
-    --include "IsPrime1.c++"                 \
-    --include "IsPrime1.h"                   \
-    --include "IsPrime2.c++"                 \
-    --include "IsPrime2.h"                   \
-    --exclude "*"                            \
-    ../../exercises/c++/ exercises
-	@rsync -r -t -u -v --delete              \
-    --include "Collatz.c++"                  \
-    --include "Collatz.h"                    \
-    --include "RunCollatz.c++"               \
-    --include "RunCollatz.in"                \
-    --include "RunCollatz.out"               \
-    --include "TestCollatz.c++"              \
-    --include "TestCollatz.out"              \
-    --exclude "*"                            \
-    ../../projects/c++/collatz/ projects/collatz
-
-test:
-	make clean
-	@echo
-	cd examples; make test
-	@echo
-	cd exercises; make test
-	@echo
-	cd projects/collatz; make test
+test: html Collatz.log RunCollatz.tmp TestCollatz.tmp collatz-tests check
 
 versions:
 	which make
