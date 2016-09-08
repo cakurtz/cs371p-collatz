@@ -71,6 +71,7 @@ int collatz_eval(int i, int j) {
     if (current_cycle > max_cycle)
       max_cycle = current_cycle;
   }
+
   return max_cycle;
 }
 
