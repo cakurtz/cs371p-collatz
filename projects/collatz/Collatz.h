@@ -28,7 +28,7 @@ using namespace std;
  * @param j an int
  * @return true if the read is successful, otherwise false
  */
-bool collatz_read (istream& r, int& i, int& j);
+bool collatz_read(istream &r, int &i, int &j);
 
 // ------------
 // collatz_eval
@@ -39,7 +39,7 @@ bool collatz_read (istream& r, int& i, int& j);
  * @param j the end       of the range, inclusive
  * @return the max cycle length of the range [i, j]
  */
-int collatz_eval (int i, int j);
+int collatz_eval(int i, int j);
 
 // ------------
 // collatz_calc
@@ -50,7 +50,7 @@ int collatz_eval (int i, int j);
  * @param comp_cycle the number to compute the cycle length for
  * @return the cycle length of comp_cycle
  */
- int collatz_calc (int comp_cycle);
+int collatz_calc(int comp_cycle);
 
 // -------------
 // collatz_print
@@ -63,7 +63,7 @@ int collatz_eval (int i, int j);
  * @param j the end       of the range, inclusive
  * @param v the max cycle length
  */
-void collatz_print (ostream& w, int i, int j, int v);
+void collatz_print(ostream &w, int i, int j, int v);
 
 // -------------
 // collatz_solve
@@ -73,6 +73,6 @@ void collatz_print (ostream& w, int i, int j, int v);
  * @param r an istream
  * @param w an ostream
  */
-void collatz_solve (istream& r, ostream& w);
+void collatz_solve(istream &r, ostream &w);
 
 #endif // Collatz_h
