@@ -35,6 +35,7 @@ bool collatz_read(istream &r, int &i, int &j) {
 // ------------
 // collatz_eval
 // ------------
+
 #ifdef ENABLE_OPTIMIZATION
 int collatz_eval(int i, int j) {
   int max_cycle;
@@ -46,6 +47,11 @@ int collatz_eval(int i, int j) {
   max_cycle = 1;
   int high_range;
 
+  // Error checking to ensure valid number
+  if (i <= 0 || i >= 1000000 || j <= 0 || j >= 1000000)
+    throw "Not a valid number!";
+  
+  // Checking to see if smaller value is i or j
   if (i < j) {
     high_range = (j / 2) + 1;
     if (i < high_range)
@@ -71,7 +77,6 @@ int collatz_eval(int i, int j) {
     if (current_cycle > max_cycle)
       max_cycle = current_cycle;
   }
-
   return max_cycle;
 }
 
@@ -104,6 +109,7 @@ int collatz_eval(int i, int j) {
 // collatz_calc
 // ------------
 
+// Runs the computation of the cycle length of a given int
 int collatz_calc(int comp_cycle) {
   int cycle_length;
   int current_value;
