@@ -18,12 +18,18 @@ using namespace std;
 #define ENABLE_OPTIMIZATION
 
 #ifdef ENABLE_OPTIMIZATION
-int cycle_cache[1000000];
+const int MAX_CYCLE_INPUT = 1000000;
+
+int cycle_cache[MAX_CYCLE_INPUT] = {};
 #endif
 
 // ------------
 // collatz_read
 // ------------
+
+/// Reads the values of an istream.
+/** Takes in an istream and inputs the values into a reference of a
+    parameterized variable. */
 
 bool collatz_read(istream &r, int &i, int &j) {
   if (!(r >> i))
@@ -35,6 +41,12 @@ bool collatz_read(istream &r, int &i, int &j) {
 // ------------
 // collatz_eval
 // ------------
+
+/// Computes the max cycle length within the given range.
+/** collatz_eval() decides which parameter is the starting point of the range
+    and which one is the stopping point. It then computes the cycles for all
+    numbers within that range, keeping track of the maximum cycle. A call to
+    collatz_calc() computes the cycle length of each number. */
 
 #ifdef ENABLE_OPTIMIZATION
 int collatz_eval(int i, int j) {
@@ -48,7 +60,7 @@ int collatz_eval(int i, int j) {
   int high_range;
 
   // Error checking to ensure valid number
-  if (i <= 0 || i >= 1000000 || j <= 0 || j >= 1000000)
+  if (i <= 0 || i >= MAX_CYCLE_INPUT || j <= 0 || j >= MAX_CYCLE_INPUT)
     throw "Not a valid number!";
 
   // Checking to see if smaller value is i or j
@@ -109,6 +121,11 @@ int collatz_eval(int i, int j) {
 // collatz_calc
 // ------------
 
+/// Calculation of cycle length.
+/** collatz_calc() decides whether the parameter is an even or odd number and
+    then performs the appropriate calculation. Once the value reaches 1, we
+    return the length of the cycle back to collatz_eval() */
+
 // Runs the computation of the cycle length of a given int
 int collatz_calc(int comp_cycle) {
   int cycle_length;
@@ -130,6 +147,11 @@ int collatz_calc(int comp_cycle) {
 // collatz_print
 // -------------
 
+/// Prints the range endpoints and the maximum cycle length.
+/** Prints out a string that starts off with the first parameter to
+    callatz_eval(), followed by the second, and finally ends with the
+    maximum cycle length between the two numbers. */
+
 void collatz_print(ostream &w, int i, int j, int v) {
   w << i << " " << j << " " << v << endl;
 }
@@ -137,6 +159,11 @@ void collatz_print(ostream &w, int i, int j, int v) {
 // -------------
 // collatz_solve
 // -------------
+
+/// Takes in the values from an input stream and calls eval and print.
+/** Takes an istream and parses through it to extract the values used as
+    the range endpoints for the computation and calls collatz_eval() to
+    compute the results and prints them out to the ostream. */
 
 void collatz_solve(istream &r, ostream &w) {
   int i;
