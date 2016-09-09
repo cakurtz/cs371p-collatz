@@ -100,6 +100,11 @@ TestCollatz.tmp: TestCollatz
 	$(GCOV) -b Collatz.c++ | grep -A 5 "File 'Collatz.c++'" >> TestCollatz.tmp
 	cat TestCollatz.tmp
 
+UVaCollatz.c++: Collatz.h Collatz.c++ RunCollatz.c++
+	cat Collatz.h Collatz.c++ RunCollatz.c++ \
+	| sed -n "/^#include \"Collatz\\.h\"$\/!p" \
+	> UVaCollatz.c++
+
 check:
 	@not_found=0;                                 \
     for i in $(FILES);                            \

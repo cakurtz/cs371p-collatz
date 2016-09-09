@@ -50,7 +50,7 @@ int collatz_eval(int i, int j) {
   // Error checking to ensure valid number
   if (i <= 0 || i >= 1000000 || j <= 0 || j >= 1000000)
     throw "Not a valid number!";
-  
+
   // Checking to see if smaller value is i or j
   if (i < j) {
     high_range = (j / 2) + 1;
